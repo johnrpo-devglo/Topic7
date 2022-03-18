@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<body>
+    <h1 th:text="#{template.modify}">Title</h1>
+    <br>
+    <form th:action="@{/save}" method="post" th:object="${location}" >
+        <input type="hidden" name="id" th:field="*{id}">
+        <label for="lat">[[#{loc.Latitude}]]:</label>
+        <input type="text" name="lat" th:field="*{lat}">
+        <br>
+        <label for="lon">[[#{loc.Longitude}]]:</label>
+        <input type="text" name="lon" th:field="*{lon}">
+        <br>
+        <label for="city">[[#{loc.City}]]:</label>
+        <input type="text" name="city" th:field="*{city}">
+        <br>
+        <label for="state">[[#{loc.State}]]:</label>
+        <input type="text" name="state" th:field="*{state}">
+        <br>
+        <label for="date">[[#{loc.Date}]]:</label>
+        <input type="date" name="date" th:field="*{create_at}">
+        <br>
+        <label for="temp">[[#{loc.Temperature}]]:</label>
+        <input type="text" name="temp" th:field="*{temperature}">
+        <br>
+        <input type="submit" name="save" th:value="#{btn.save-modify}">
+    </form>
+    <br>
+    <button> <a th:href="@{/}">[[#{modify.back}]]</a> </button>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <div>
+            <br>
+            <a th:href="@{/(lang=es)}">ES</a>
+            <a th:href="@{/(lang=en)}">EN</a>
+            <p> [[#{template.footer}]] &copy </p>
+        </div>
+    </footer>
+</body>
+</html>

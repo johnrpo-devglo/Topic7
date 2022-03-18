@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<body>
+    <h1 th:text="#{template.title}">Title</h1>
+    <br>
+    <div th:if="${locations != null and !locations.empty}">
+        <table border="1">
+            <tr>
+                <th>[[#{loc.Latitude}]]</th>
+                <th>[[#{loc.Longitude}]]</th>
+                <th>[[#{loc.City}]]</th>
+                <th>[[#{loc.State}]]</th>
+                <th>[[#{loc.Date}]]</th>
+                <th>[[#{loc.Temperature}]]</th>
+                <th>[[#{loc.Edit}]]</th>
+                <th>[[#{loc.Delete}]]</th>
+            </tr>
+            <tr th:each="location : ${locations}" >
+                <td th:text="${location.lat}"></td>
+                <td th:text="${location.lon}"></td>
+                <td th:text="${location.city}"></td>
+                <td th:text="${location.state}"></td>
+                <td th:text="${location.create_at}"></td>
+                <td th:text="${location.temperature}"></td>
+                <td> <a th:href="@{/edit/} + ${location.id}" th:text="Edit"></a> </td>
+                <td> <a th:href="@{/delete(id=${location.id})}" th:text="Delete"></a> </td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${locations == null or locations.empty}">
+        [[#{loc.ListEmpty}]]
+    </div>
+    <br>
+    <button> <a th:href="@{/add}">[[#{loc.create}]]</a> </button>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <div>
+            <br>
+            <a th:href="@{/(lang=es)}">ES</a>
+            <a th:href="@{/(lang=en)}">EN</a>
+            <p> [[#{template.footer}]] &copy </p>
+        </div>
+    </footer>
+
+</body>
+</html>
